@@ -1,3 +1,11 @@
+#DEFAULT NETWORK
+resource "google_compute_network" "default" {
+  name                    = "default"
+  description             = "Default network for the project"
+  auto_create_subnetworks = "true"
+  routing_mode            = "REGIONAL"
+}
+
 # Create VPC
 resource "google_compute_network" "vpc" {
   name                    = "${var.vm_name}-vpc"
