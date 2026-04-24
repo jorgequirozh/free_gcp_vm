@@ -82,7 +82,6 @@ resource "google_compute_firewall" "allow-ovpn" {
   }
  
   source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["ovpn"]
   depends_on = [ 
     google_compute_network.vpc
   ]
