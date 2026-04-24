@@ -73,3 +73,17 @@ resource "google_compute_firewall" "portainer" {
     google_compute_network.vpc
   ]
 }
+resource "google_compute_firewall" "allow-ovpn" {
+  name    = "socat-fw-allow-ovpn"
+  network = google_compute_network.vpc.name
+  allow {
+    protocol = "udp"
+    ports    = ["1194"]
+  }
+ 
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["ovpn"]
+  depends_on = [ 
+    google_compute_network.vpc
+  ]
+}
