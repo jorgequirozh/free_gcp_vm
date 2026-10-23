@@ -1,4 +1,3 @@
-/*
 # Allow http
 resource "google_compute_firewall" "allow-http" {
   name    = "socat-fw-allow-http"
@@ -24,7 +23,7 @@ resource "google_compute_firewall" "allow-https" {
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["https-server"]
 }
-*/
+
 resource "google_compute_firewall" "allow-ssh" {
   name        = "default-allow-ssh"
   network     = google_compute_network.default.id
@@ -39,7 +38,7 @@ resource "google_compute_firewall" "allow-ssh" {
   source_ranges = ["0.0.0.0/0"]
 }
 
-
+/*
 resource "google_compute_firewall" "portainer" {
   name    = "wireguard-fw-allow-http-fw-allow-9001"
   network = google_compute_network.vpc.name
@@ -54,6 +53,7 @@ resource "google_compute_firewall" "portainer" {
     google_compute_network.vpc
   ]
 }
+*/
 resource "google_compute_firewall" "allow-ovpn" {
   name    = "socat-fw-allow-ovpn"
   network = google_compute_network.vpc.name
@@ -81,5 +81,5 @@ resource "google_compute_firewall" "allow-iap-ssh" {
   source_ranges = ["35.235.240.0/20"]
 
   # Matches the 'ssh' tag defined on your VM in vm.tf
-  target_tags   = ["ssh"]
+  target_tags = ["ssh"]
 }
