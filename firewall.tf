@@ -67,3 +67,19 @@ resource "google_compute_firewall" "allow-ovpn" {
     google_compute_network.vpc
   ]
 }
+
+resource "google_compute_firewall" "allow-iap-ssh" {
+  name    = "allow-iap-ssh"
+  network = google_compute_network.vpc.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  # GCP Identity-Aware Proxy IP range
+  source_ranges = ["35.235.240.0/20"]
+
+  # Matches the 'ssh' tag defined on your VM in vm.tf
+  target_tags   = ["ssh"]
+}
